@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lohitha Yerra | Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block title %}Dashboard{% endblock %}
+
+    {% block content %}
+    <div class="container">
+        <h1>Welcome, {{ user.name }}</h1>
+        <p>Email: {{ user.email }}</p>
+
+        <h2>Resume Upload</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="resume" accept=".pdf" required>
+            <button type="submit">Upload Resume</button>
+        </form>
+
+        {% if user.resume %}
+            <p>✅ Your resume is uploaded.</p>
+            <a href="{{ url_for('download_resume', filename=user.resume) }}" class="btn">Download My Resume</a>
+        {% else %}
+            <p>❌ You haven't uploaded a resume yet.</p>
+        {% endif %}
+
+        <br><br>
+        <a href="/">Go to Home</a> | <a href="/logout">Logout</a>
+    </div>
+    {% endblock%}
+</body>
+</html>

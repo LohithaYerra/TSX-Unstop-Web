@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.name }}'s Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+    
+    {% block title %}Portfolio{% endblock %}
+
+    {% block content %}
+    <div class="container">
+        <h1>{{ user.name }}</h1>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>About Me:</strong> {{ user.about }}</p>
+        <p><strong>Skills:</strong> {{ user.skills }}</p>
+        <p><strong>Projects:</strong> {{ user.projects }}</p>
+        <p><strong>LinkedIn:</strong> <a href="{{ user.linkedin }}" target="_blank">{{ user.linkedin }}</a></p>
+        <p><strong>GitHub:</strong> <a href="{{ user.github }}" target="_blank">{{ user.github }}</a></p>
+
+        {% if user.resume %}
+            <a href="{{ url_for('download_resume', filename=user.resume) }}" class="btn">Download Resume</a>
+        {% endif %}
+        
+        <br><br>
+        <a href="{{ url_for('edit_portfolio') }}" class="btn">Edit Portfolio</a>
+    </div>
+
+    {% endblock %}
+</body>
+</html>

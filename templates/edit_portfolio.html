@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block title %}Edit Portfolio{% endblock %}
+
+    {% block content %}
+    <div class="container">
+        <h2>Edit Your Portfolio</h2>
+        <form method="POST">
+            <label>Skills:</label>
+            <input type="text" name="skills" value="{{ user.skills or '' }}"><br>
+
+            <label>About Me:</label>
+            <textarea name="about">{{ user.about or '' }}</textarea><br>
+
+            <label>Projects:</label>
+            <textarea name="projects">{{ user.projects or '' }}</textarea><br>
+
+            <label>LinkedIn:</label>
+            <input type="text" name="linkedin" value="{{ user.linkedin or '' }}"><br>
+
+            <label>GitHub:</label>
+            <input type="text" name="github" value="{{ user.github or '' }}"><br>
+
+            <button type="submit">Save</button>
+        </form>
+    </div>
+
+    {% endblock %}
+</body>
+</html>
